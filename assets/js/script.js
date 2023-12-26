@@ -81,7 +81,27 @@ function startGame() {
     gameCells[currentSnake[0]].style.background = `hsl(${snakeColor}, 100%, 50%)`;
   }
 
+  let moveSnake = function(moveDirection) {
+    if (moveDirection === "ArrowRight") {
+        snakeDirection = 1;
+      }
+      if (moveDirection === "ArrowLeft") {
+        snakeDirection = -1;
+      }
+      if (moveDirection === "ArrowUp") {
+        snakeDirection = -width;
+      }
+      if (moveDirection === "ArrowDown") {
+        snakeDirection = width;
+      }
+    }
 
+document.addEventListener("keydown",function(event){
+    console.log(event);
+    if(!["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"].includes(event.key))
+    return;
+    moveSnake(event.key)
+});
 
 
 
