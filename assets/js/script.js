@@ -35,8 +35,12 @@ let snakeColor = Math.floor(Math.random() * 360);
 let snakeColorIncrement = 8;
 
 let snakeDirection = 1;
-let intervalTime = 200;
+let intervalTime = 250;
 let interval = 0;
+
+// food variables
+let foodItemIndex = 0; // first cell
+let score = 0;
 
 //to create grig game for the game
 for (let i = 0; i < width * width; i++) {
@@ -47,6 +51,16 @@ for (let i = 0; i < width * width; i++) {
 }
 const gameCells = document.querySelectorAll("#game-grid div");
 
+async function createFood() {
+    foodItemIndex = Math.floor(Math.random() * numCells);
+    if (currentSnake.includes(foodItemIndex)) {
+        await wait(100);
+        createFood();
+    } else {
+        gameCells[foodItemIndex].classList.add("food-item");
+        gameCells[foodItemIndex].innerText = randomElementFromArray(foodItemsArray);
+    }
+}
 
 function startGame() {
     currentSnake = [2, 1, 0];
@@ -62,6 +76,13 @@ function startGame() {
     });
     clearInterval(interval);
     snakeDirection = 1;
+
+    gameCells[foodItemIndex].classList.remove("food-item");
+    gameCells[foodItemIndex].innerText = "";
+    createFood();
+    score = 0;
+    scoreDisplay.innerHTML = score;
+
     interval = setInterval(gameLoop, intervalTime);
 }
 
@@ -74,6 +95,17 @@ function gameLoop() {
     gameCells[tail].style.background = "none";
     currentSnake.unshift(currentSnake[0] + snakeDirection); // gives direction to the head
     // console.log(currentSnake);
+
+    if (gameCells[currentSnake[0]].classList.contains("food-item")) {
+        gameCells[currentSnake[0]].classList.remove("food-item");
+        gameCells[tail].classList.add("snake");
+        snakeColor += snakeColorIncrement % 360;
+        gameCells[tail].style.background = `hsl(${snakeColor}, 100%, 50%)`;
+        currentSnake.push(tail);
+        score++;
+        scoreDisplay.textContent = score;
+        createFood();
+    }
 
     gameCells[currentSnake[0]].classList.add("snake");
     gameCells[currentSnake[0]].innerText = "👀";
