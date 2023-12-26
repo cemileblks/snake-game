@@ -34,7 +34,11 @@ let currentSnake = [2, 1, 0];
 let snakeColor = Math.floor(Math.random() * 360);
 let snakeColorIncrement = 8;
 
-//to create grig cells for the game
+let snakeDirection = 1;
+let intervalTime = 200;
+let interval = 0;
+
+//to create grig game for the game
 for (let i = 0; i < width * width; i++) {
     const cell = document.createElement("div");
     cell.style.width = `${width * 3}px`;
@@ -51,9 +55,31 @@ function startGame() {
       gameCells[i].style.background = `hsl(${snakeColor}, 100%, 50%)`;
       gameCells[i].classList.add("snake");
     });
+    currentSnake.forEach((i) => {
+        gameCells[i].style.background = "none";
+        gameCells[i].classList.remove("snake");
+        gameCells[i].innerText = "";
+    });
+    clearInterval(interval);
+    snakeDirection = 1;
+    interval = setInterval(gameLoop, intervalTime);
   }
   
   startBtn.addEventListener("click", startGame);
+
+  function gameLoop() {
+    gameCells[currentSnake[0]].innerText = "";
+    const tail = currentSnake.pop();
+    gameCells[tail].classList.remove("snake");
+    gameCells[tail].style.background = "none";
+    currentSnake.unshift(currentSnake[0] + snakeDirection); // gives direction to the head
+    // console.log(currentSnake);
+  
+    gameCells[currentSnake[0]].classList.add("snake");
+    gameCells[currentSnake[0]].innerText = "👀";
+    snakeColor += snakeColorIncrement % 360;
+    gameCells[currentSnake[0]].style.background = `hsl(${snakeColor}, 100%, 50%)`;
+  }
 
 
 
