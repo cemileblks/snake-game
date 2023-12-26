@@ -172,6 +172,11 @@ button {
     grid-area: right;
   }
 
+  .snake {
+    border: 1px solid lightgrey;
+    border-radius: 25%;
+}
+
 
 
   
