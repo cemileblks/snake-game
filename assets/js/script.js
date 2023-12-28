@@ -158,13 +158,17 @@
 
 // document.addEventListener("keydown", handleKeyMove);
 
-import { update as updateSnake, draw as drawSnake, snakeSpeed, getSnakeHead, snakeIntersection} from './utilities/utils.js';
+import { update as updateSnake, draw as drawSnake, snakeSpeed, getSnakeHead, snakeIntersection, snakeBody} from './utilities/utils.js';
 import { update as updateFood, draw as drawFood } from "./utilities/food.js";
 import { outsideGrid } from "./utilities/grid.js";
+
+const startBtn = document.getElementById("start-btn");
 
 let lastRenderTime = 0;
 let gameOver = false;
 const gameBoard = document.getElementById("game-grid")
+
+// startBtn.addEventListener("click", startGame);
 
 function main(currentTime) {
     if(gameOver){

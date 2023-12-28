@@ -9,9 +9,11 @@
 
 import { getInputDirection } from "./input.js";
 
-export const snakeSpeed = 2;
-const snakeBody = [{ x: 9, y: 9 }];
+export const snakeSpeed = 3.5;
+export const snakeBody = [{ x: 9, y: 9 }];
 let newSegments = 0;
+let snakeColor = Math.floor(Math.random() * 360);
+let snakeColorIncrement = 7;
 
 
 export function update() { 
@@ -19,17 +21,64 @@ export function update() {
     const inputDirection = getInputDirection();
    for (let i = snakeBody.length - 2; i >=0; i--) {
     snakeBody[i + 1] = { ...snakeBody[i] }
-   }
+   };
    snakeBody[0].x += inputDirection.x;
    snakeBody[0].y += inputDirection.y;
 };
 
+// export function draw(gameBoard) {
+//     snakeBody.forEach(segment => {
+//         const snakeElement = document.createElement("div");
+//         snakeElement.style.gridRowStart = segment.y;
+//         snakeElement.style.gridColumnStart = segment.x;
+//         snakeColor += snakeColorIncrement % 360;
+//         snakeElement.style.background = `hsl(${snakeColor}, 100%, 50%)`;
+//         snakeElement.classList.add('snake');
+//         gameBoard.appendChild(snakeElement);
+//     });
+// };
+
+// export function draw(gameBoard) {
+//     snakeBody.forEach((segment, index) => {
+//         const snakeElement = document.createElement("div");
+//         snakeElement.style.gridRowStart = segment.y;
+//         snakeElement.style.gridColumnStart = segment.x;
+//         snakeColor += snakeColorIncrement % 360;
+//         snakeElement.style.background = `hsl(${snakeColor}, 100%, 50%)`;
+//         snakeElement.classList.add('snake');
+
+//         if (index === 0) {
+//             // Draw eyes on the head
+//             const leftEye = document.createElement("div");
+//             leftEye.classList.add("eye");
+//             snakeElement.appendChild(leftEye);
+
+//             const rightEye = document.createElement("div");
+//             rightEye.classList.add("eye");
+//             snakeElement.appendChild(rightEye);
+//         }
+
+//         gameBoard.appendChild(snakeElement);
+//     });
+// };
+
 export function draw(gameBoard) {
-    snakeBody.forEach(segment => {
+    snakeBody.forEach((segment, index) => {
         const snakeElement = document.createElement("div");
         snakeElement.style.gridRowStart = segment.y;
         snakeElement.style.gridColumnStart = segment.x;
+        snakeColor += snakeColorIncrement % 360;
+        snakeElement.style.background = `hsl(${snakeColor}, 100%, 50%)`;
         snakeElement.classList.add('snake');
+
+        if (index === 0) {
+            // Add emoji eyes to the head
+            const eyesEmoji = document.createElement("div");
+            eyesEmoji.innerText = "👀";
+            eyesEmoji.classList.add("eyes");
+            snakeElement.appendChild(eyesEmoji);
+        }
+
         gameBoard.appendChild(snakeElement);
     });
 };

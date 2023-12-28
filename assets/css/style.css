@@ -184,13 +184,63 @@ button {
     grid-area: right;
 }
 
-.snake {
+/* .snake {
     background-color: rgb(0, 119, 79);
     border: .25vmin solid lightgrey;
     border-radius: 25%;
-}
+} */
 
 .food {
     background-color: #FF9A5A;
     border: .25vmin solid lightgrey;
+}
+
+/* .eye {
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.snake {
+    position: relative;
+}
+
+.snake > .eye {
+    position: absolute;
+}
+
+.snake > .eye:nth-child(1) {
+    top: 10px;
+    left: 10px;
+}
+
+.snake > .eye:nth-child(2) {
+    top: 10px;
+    left: 20px;
+} */
+
+.snake {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    /* border: .25vmin solid rgb(41, 41, 41); */
+    border-radius: 25%;
+    position: relative; /* Ensure snake elements are positioned relative */
+}
+
+.eyes {
+    font-size: 15.5px; /* Adjust the size of the eyes */
+    position: absolute; /* Use absolute positioning */
+    top: 0; /* Adjust the vertical position of the eyes */
+    left: 0; /* Adjust the horizontal position of the eyes */
+}
+
+@media (max-width: 400px) {
+    #game-grid {
+        width: 95vmin;
+        height: 95vmin;
+    }
+    .eyes {
+        font-size: 12px; /* Adjust the size of the eyes for smaller screens */
+    }
 }
