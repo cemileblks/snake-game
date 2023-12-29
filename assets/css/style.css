@@ -14,8 +14,18 @@ body {
     height: 100vh;
 }
 
+p {
+    text-align: center;
+    margin: 10px;
+    color: rgb(85, 85, 85);
+}
+
 button {
     cursor: pointer;
+}
+
+#score {
+    margin: 0px 10px 10px 10px;
 }
 
 /* #game-grid {
