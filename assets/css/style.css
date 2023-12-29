@@ -191,10 +191,7 @@ button {
 } */
 
 .food {
-    /* background-color: #FF9A5A; */
-    /* border: .25vmin solid lightgrey; */
-    /* border-radius: 50%;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
+    font-size: 20px;
 }
 
 /* .eye {
@@ -237,12 +234,24 @@ button {
     left: 0; /* Adjust the horizontal position of the eyes */
 }
 
+@media (max-width: 860px) {
+    .eyes {
+        font-size: 14px; /* Adjust the size of the eyes for smaller screens */
+    }
+    .food {
+        font-size: 16px; /* Adjust the size of the eyes */
+    }
+}
+
 @media (max-width: 400px) {
     #game-grid {
         width: 95vmin;
         height: 95vmin;
     }
     .eyes {
-        font-size: 12px; /* Adjust the size of the eyes for smaller screens */
+        font-size: 10px; /* Adjust the size of the eyes for smaller screens */
+    }
+    .food {
+        font-size: 12px; /* Adjust the size of the eyes */
     }
 }
