@@ -191,8 +191,10 @@ button {
 } */
 
 .food {
-    background-color: #FF9A5A;
-    border: .25vmin solid lightgrey;
+    /* background-color: #FF9A5A; */
+    /* border: .25vmin solid lightgrey; */
+    /* border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
 }
 
 /* .eye {
