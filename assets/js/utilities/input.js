@@ -5,16 +5,16 @@ let lastInputDirection = { x: 0, y: 0 };
 
 keysContainer.addEventListener('click', handleButtonClick);
 
-window.addEventListener('keydown', handleKeyDown);
+// window.addEventListener('keydown', handleKeyDown);
 
-// Touch events for mobile devices
-keysContainer.addEventListener('touchstart', handleTouchStart);
-keysContainer.addEventListener('touchend', handleTouchEnd);
+// // Touch events for mobile devices
+// keysContainer.addEventListener('touchstart', handleTouchStart);
+// keysContainer.addEventListener('touchend', handleTouchEnd);
 
-function handleButtonClick(event) {
-    const buttonId = event.target.id;
-    handleInput(buttonId);
-}
+// function handleButtonClick(event) {
+//     const buttonId = event.target.id;
+//     handleInput(buttonId);
+// }
 
 function handleKeyDown(event) {
     switch (event.key) {
@@ -44,9 +44,9 @@ function handleTouchStart(event) {
     }
 }
 
-function handleTouchEnd() {
-    inputDirection = { x: 0, y: 0 };
-}
+// function handleTouchEnd() {
+//     inputDirection = { x: 0, y: 0 };
+// }
 
 function handleInput(buttonId) {
     switch (buttonId) {
