@@ -1,7 +1,7 @@
 // export function wait(ms = 0) {
 //     return new Promise((resolve) => setTimeout(resolve, ms));
 //   }
-  
+
 //   export function randomElementFromArray(arr) {
 //     const element = arr[Math.floor(Math.random() * arr.length)];
 //     return element;
@@ -9,58 +9,21 @@
 
 import { getInputDirection } from "./input.js";
 
-export const snakeSpeed = 3.5;
+export let snakeSpeed = 4;
 export const snakeBody = [{ x: 9, y: 9 }];
 let newSegments = 0;
 let snakeColor = Math.floor(Math.random() * 360);
 let snakeColorIncrement = 7;
 
-
-export function update() { 
+export function update() {
     addSegment();
     const inputDirection = getInputDirection();
-   for (let i = snakeBody.length - 2; i >=0; i--) {
-    snakeBody[i + 1] = { ...snakeBody[i] }
-   };
-   snakeBody[0].x += inputDirection.x;
-   snakeBody[0].y += inputDirection.y;
+    for (let i = snakeBody.length - 2; i >= 0; i--) {
+        snakeBody[i + 1] = { ...snakeBody[i] }
+    };
+    snakeBody[0].x += inputDirection.x;
+    snakeBody[0].y += inputDirection.y;
 };
-
-// export function draw(gameBoard) {
-//     snakeBody.forEach(segment => {
-//         const snakeElement = document.createElement("div");
-//         snakeElement.style.gridRowStart = segment.y;
-//         snakeElement.style.gridColumnStart = segment.x;
-//         snakeColor += snakeColorIncrement % 360;
-//         snakeElement.style.background = `hsl(${snakeColor}, 100%, 50%)`;
-//         snakeElement.classList.add('snake');
-//         gameBoard.appendChild(snakeElement);
-//     });
-// };
-
-// export function draw(gameBoard) {
-//     snakeBody.forEach((segment, index) => {
-//         const snakeElement = document.createElement("div");
-//         snakeElement.style.gridRowStart = segment.y;
-//         snakeElement.style.gridColumnStart = segment.x;
-//         snakeColor += snakeColorIncrement % 360;
-//         snakeElement.style.background = `hsl(${snakeColor}, 100%, 50%)`;
-//         snakeElement.classList.add('snake');
-
-//         if (index === 0) {
-//             // Draw eyes on the head
-//             const leftEye = document.createElement("div");
-//             leftEye.classList.add("eye");
-//             snakeElement.appendChild(leftEye);
-
-//             const rightEye = document.createElement("div");
-//             rightEye.classList.add("eye");
-//             snakeElement.appendChild(rightEye);
-//         }
-
-//         gameBoard.appendChild(snakeElement);
-//     });
-// };
 
 export function draw(gameBoard) {
     snakeBody.forEach((segment, index) => {
@@ -86,10 +49,13 @@ export function draw(gameBoard) {
 
 export function expandSnake(amount) {
     newSegments += amount;
+    if (snakeBody.length > 8) {
+        snakeSpeed = snakeSpeed + 0.2;
+    }
 };
 
 
-export function onSnake(position, {ignoreHead = false} = {}) {
+export function onSnake(position, { ignoreHead = false } = {}) {
     return snakeBody.some((segment, index) => {
         if (ignoreHead && index === 0) return false;
         return equalPostions(segment, position);
@@ -101,7 +67,7 @@ export function getSnakeHead() {
 };
 
 export function snakeIntersection() {
-    return onSnake(snakeBody[0], {ignoreHead: true});
+    return onSnake(snakeBody[0], { ignoreHead: true });
 }
 
 function equalPostions(pos1, pos2) {
@@ -110,7 +76,7 @@ function equalPostions(pos1, pos2) {
 
 function addSegment() {
     for (let i = 0; i < newSegments; i++) {
-        snakeBody.push({ ...snakeBody[snakeBody.length - 1]});
+        snakeBody.push({ ...snakeBody[snakeBody.length - 1] });
     };
 
     newSegments = 0;

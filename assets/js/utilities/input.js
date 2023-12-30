@@ -7,10 +7,6 @@ keysContainer.addEventListener('click', handleButtonClick);
 
 window.addEventListener('keydown', handleKeyDown);
 
-// Touch events for mobile devices
-// keysContainer.addEventListener('touchstart', handleTouchStart);
-// keysContainer.addEventListener('touchend', handleTouchEnd);
-
 function handleButtonClick(event) {
     const buttonId = event.target.id;
     if (snakeBody.length < 2) {
@@ -53,19 +49,6 @@ function handleKeyDown(event) {
             break;
     }
 }
-
-// function handleTouchStart(event) {
-//     const touchedElement = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
-//     const buttonId = touchedElement.id;
-//     if (buttonId) {
-//         event.preventDefault(); // Prevent scrolling on touch devices
-//         handleInput(buttonId);
-//     }
-// }
-
-// function handleTouchEnd() {
-//     inputDirection = { x: 0, y: 0 };
-// }
 
 function handleInput(buttonId) {
     switch (buttonId) {
