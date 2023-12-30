@@ -1,26 +1,10 @@
-import { onSnake, expandSnake } from "./utils.js";
+import { onSnake, expandSnake } from "./snake.js";
 import { randomGridPosition } from "./grid.js";
 let food = getRandomFoodPosition();
 const expansionRate =2;
 const scoreDisplay = document.querySelector("span");
 const foodItem =  "🍎"
 let score = 0;
-
-//   function getRandomElementFromArray(array) {
-//     const randomIndex = Math.floor(Math.random() * array.length);
-//     return array[randomIndex];
-// }
-
-//   function createFood() {
-//     foodItemIndex = Math.floor(Math.random() * numCells);
-//     if (currentSnake.includes(foodItemIndex)) {
-//       createFood();
-//     } else {
-//       cells[foodItemIndex].classList.add("food-item");
-//       cells[foodItemIndex].innerText = randomElementFromArray(foodItemsArray);
-//     }
-//   }
-
 
 export function update() {
     if(onSnake(food)){

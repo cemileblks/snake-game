@@ -1,4 +1,4 @@
-import { snakeBody } from "./utils.js";
+import { snakeBody } from "./snake.js";
 const keysContainer = document.getElementById('keys-container');
 let inputDirection = { x: 0, y: 0 };
 let lastInputDirection = { x: 0, y: 0 };

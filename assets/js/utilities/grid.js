@@ -1,5 +1,3 @@
-
-
 const gridSize = 17;
 
 export function randomGridPosition() {

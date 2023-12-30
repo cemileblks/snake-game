@@ -1,12 +1,3 @@
-// export function wait(ms = 0) {
-//     return new Promise((resolve) => setTimeout(resolve, ms));
-//   }
-
-//   export function randomElementFromArray(arr) {
-//     const element = arr[Math.floor(Math.random() * arr.length)];
-//     return element;
-//   }
-
 import { getInputDirection } from "./input.js";
 
 export let snakeSpeed = 4;
@@ -68,7 +59,7 @@ export function getSnakeHead() {
 
 export function snakeIntersection() {
     return onSnake(snakeBody[0], { ignoreHead: true });
-}
+};
 
 function equalPostions(pos1, pos2) {
     return pos1.x === pos2.x && pos1.y === pos2.y;
@@ -80,4 +71,4 @@ function addSegment() {
     };
 
     newSegments = 0;
-}
+};
